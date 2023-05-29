@@ -2,7 +2,7 @@
   "name": "contact-management",
   "version": "1.0.0",
   "description": "Contact Management System using Express and MongoDB",
-  "main": "index.js",
+  "main": "Server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
