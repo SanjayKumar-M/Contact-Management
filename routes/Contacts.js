@@ -1,15 +1,13 @@
-import  Express  from "express";
+import Express from "express";
 
-const router = Express.Router();
+const contactRoutes = Express.Router()
 
-router.route('/').get();
+contactRoutes.route('/').post((req, res) => { res.json({ "message": "This is Contact Page" }) })
 
-router.route('/').post((req,res)=>{
-    res.json({"Message":"This is contact Page which is created"})
-})
+contactRoutes.route('/:id').get((req, res) => { res.json({ "messgae": `Fetch all contacts from ${req.params.id}` }) })
 
+contactRoutes.route('/:id').put((req, res) => { res.json({ "message": `Update the contacts for ${req.params.id}` }) })
 
-router.route('/:id').get((req,res)=>{res.json({"Messgae":`Get contact for ${req.params.id}`})})
-router.route('/:id').put((req,res)=>{res.json({"Messgae":`Update contact for ${req.params.id}`})})
-router.route('/:id').delete((req,res)=>{res.json({"Messgae":`Delete contact for ${req.params.id}`})})
-export default router
+contactRoutes.route('/:id').delete((req, res) => { res.json({ "message": `Deleted a contact for ${req.params.id}` }) })
+
+export default contactRoutes
