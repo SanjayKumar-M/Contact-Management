@@ -10,4 +10,4 @@ contactRoutes.route('/:id').put((req, res) => { res.json({ "message": `Update th
 
 contactRoutes.route('/:id').delete((req, res) => { res.json({ "message": `Deleted a contact for ${req.params.id}` }) })
 
-export default contactRoutes;
+export default contactRoutes
