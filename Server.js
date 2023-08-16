@@ -4,7 +4,7 @@ import contactRoutes from "./routes/Contacts.js";
 
 const app = Express()
 
-const PORT = 3000;
+const PORT = 8080;
 
 app.use('/api/contacts', contactRoutes)
 
