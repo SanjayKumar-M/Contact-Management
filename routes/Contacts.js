@@ -2,7 +2,7 @@ import Express from "express";
 
 const contactRoutes = Express.Router()
 
-contactRoutes.route('/').post((req, res) => { res.json({ "message": "This is Contact Page" }) })
+contactRoutes.route('/').post()
 
 contactRoutes.route('/:id').get((req, res) => { res.json({ "messgae": `Fetch all contacts from ${req.params.id}` }) })
 
