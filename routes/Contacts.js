@@ -1,13 +1,13 @@
 import Express from "express";
-
+import { getContact } from "../Controllers/contactController.js";
 const contactRoutes = Express.Router()
 
 contactRoutes.route('/').post()
 
-contactRoutes.route('/:id').get((req, res) => { res.json({ "messgae": `Fetch all contacts from ${req.params.id}` }) })
+contactRoutes.route('/:id').get()
 
-contactRoutes.route('/:id').put((req, res) => { res.json({ "message": `Update the contacts for ${req.params.id}` }) })
+contactRoutes.route('/:id').put()
 
-contactRoutes.route('/:id').delete((req, res) => { res.json({ "message": `Deleted a contact for ${req.params.id}` }) })
+contactRoutes.route('/:id').delete()
 
 export default contactRoutes
