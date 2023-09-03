@@ -14,5 +14,5 @@ const getContact = (req, res) => {
     res.json({ "message": `Deleted a contact for ${req.params.id}` });
   };
   
-  export { getContact, writeContact, updateContact, deleteContact }
+  export { getContact, writeContact, updateContact, deleteContact };
   
