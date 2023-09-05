@@ -2,11 +2,10 @@ const getContact = (req, res) => {
   res.json({ "message": `Fetched all contacts from ${req.params.id}` });
 };
 
-const writeContact = (req, res) => {
+const createContact = (req, res) => {
   res.json({ "message": "This is Contact Page" });
-  console.log(req.body)
-  
-  
+  const {name,email,ph} = req.body;
+  !name || !email || ph ? res.status(400): res.status(200);
 };
 
 const updateContact = (req, res) => {
@@ -17,4 +16,4 @@ const deleteContact = (req, res) => {
   res.json({ "message": `Deleted a contact for ${req.params.id}` });
 };
 
-export { getContact, writeContact, updateContact, deleteContact };
+export { getContact, createContact, updateContact, deleteContact };

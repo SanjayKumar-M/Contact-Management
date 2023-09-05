@@ -1,8 +1,8 @@
 import Express from "express";
-import { getContact,writeContact,updateContact,deleteContact } from "../Controllers/contactController.js";
+import { getContact,createContact,updateContact,deleteContact } from "../Controllers/contactController.js";
 const contactRoutes = Express.Router()
 
-contactRoutes.route('/').post(writeContact)
+contactRoutes.route('/').post(createContact)
 
 contactRoutes.route('/:id').get(getContact)
 
