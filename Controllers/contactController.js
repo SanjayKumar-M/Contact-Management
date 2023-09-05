@@ -1,9 +1,12 @@
 const getContact = (req, res) => {
-  res.json({ "message": `Fetch all contacts from ${req.params.id}` });
+  res.json({ "message": `Fetched all contacts from ${req.params.id}` });
 };
 
 const writeContact = (req, res) => {
   res.json({ "message": "This is Contact Page" });
+  console.log(req.body)
+  
+  
 };
 
 const updateContact = (req, res) => {
