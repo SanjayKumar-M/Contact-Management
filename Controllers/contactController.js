@@ -29,14 +29,14 @@ const createContact = expressAsyncHandler(async (req, res) => {
 
 const updateContact = expressAsyncHandler(async (req, res) => {
   const contact = await ContactSchema.findById(req.params.id);
-  if(!contact ){
-    res.status(400).json({message:"Plz update anything !"});
+  if (!contact) {
+    res.status(400).json({ message: "Plz update anything !" });
   }
 
   const updateTheContact = await ContactSchema.findByIdAndUpdate(
     req.params.id,
     req.body,
-    {new: true}
+    { new: true }
   )
   res.status(200).json(updateTheContact)
 });
@@ -60,3 +60,5 @@ const deleteContact = expressAsyncHandler(async (req, res) => {
 
 
 export { getContact, createContact, updateContact, deleteContact };
+
+

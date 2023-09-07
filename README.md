@@ -1,7 +1,9 @@
 # Contact-Management
-An Api whcih performs CRUD operations for contacts. 
+An Api which performs CRUD operations for contacts. 
 
 ```
+Tech Stack :
+
 Node Js
 Express Js
 Mongo DB
