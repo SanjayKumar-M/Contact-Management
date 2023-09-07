@@ -7,5 +7,5 @@ Tech Stack :
 Node Js
 Express Js
 Mongo DB
-Thunder client
+Thunder client  -> api testing extension
 ```
