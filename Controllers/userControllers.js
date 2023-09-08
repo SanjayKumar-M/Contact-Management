@@ -1,6 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import userModel from "../model/userModel.js";
 import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
 
 const registerUser = expressAsyncHandler(async (req, res) => {
     const { userName, email, password } = req.body;
@@ -29,11 +30,35 @@ const registerUser = expressAsyncHandler(async (req, res) => {
         name: userRegistration.userName,
         email: userRegistration.email
     });
-    
+
 });
 
-const loginUser = expressAsyncHandler((req, res) => {
-    res.json({ message: "Login the user" });
+const loginUser = expressAsyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.status(400).json({ message: "Enter all the details !" });
+    }
+    const findUser = await userModel.findOne({ email });
+    const comparedPasswd = await bcrypt.compare(password, findUser.password);
+
+    if (findUser && comparedPasswd) {
+        const accesstoken = jwt.sign(
+            {
+                findUser: {
+                    userName: findUser.username,
+                    email: findUser.email,
+                    id: findUser.id
+                }
+            },
+            "Thisistokensecret",
+            { expiresIn: "1m" }
+        );
+        res.status(200).json({ accesstoken })
+    }
+    else{
+        res.status(401).json({message:"Invalid Credentials"})
+    }
+    res.json({message:"Login user!"})
 });
 
 const currentUser = expressAsyncHandler((req, res) => {
