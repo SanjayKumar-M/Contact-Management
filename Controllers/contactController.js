@@ -2,12 +2,7 @@ import expressAsyncHandler from "express-async-handler";
 import ContactSchema from "../model/contactmodel.js";
 
 const getContacts = expressAsyncHandler(async (req, res) => {
-  // const contacts = await ContactSchema.findById(req.params.id);
-  // if (!contacts) {
-  //   res.status(404);
-  //   throw new Error("Contact Not Found");
-  // }
-  // res.json({ messgage: `Fetched details from ${req.params.id}`, contacts });
+
   const contacts = await ContactSchema.find({userId: req.findUser.id})
   res.status(200).json(contacts)
 

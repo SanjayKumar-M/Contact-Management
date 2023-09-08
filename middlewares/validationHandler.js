@@ -1,4 +1,4 @@
-import jwt, { decode } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import expressAsyncHandler from "express-async-handler";
 const validationHandler = expressAsyncHandler(async(req,res,next)=>{
 

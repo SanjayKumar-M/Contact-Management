@@ -18,7 +18,8 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     const userRegistration = await userModel.create({
         userName: userName,
         email: email,
-        password: hashedPassword
+        password: hashedPassword,
+     
     });
 
     if (!userRegistration) {
@@ -47,7 +48,7 @@ const loginUser = expressAsyncHandler(async (req, res) => {
                 findUser: {
                     userName: findUser.userName,
                     email: findUser.email,
-                    id: findUser.id
+                    userId: findUser.userId
                 }
             },
             "Thisistokensecret",
