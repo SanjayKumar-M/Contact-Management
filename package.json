@@ -8,6 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon Server.js"
   },
+  "engines": {
+    "node": "18.17.1"
+},
+
   "author": "Sanjay Kumar M",
   "license": "MIT",
   "dependencies": {
