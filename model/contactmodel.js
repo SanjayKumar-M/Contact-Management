@@ -12,7 +12,7 @@ const contactSchema = mongoose.Schema({
     ph:{
         type:String,
         required:[true,"Enter Ph Number"],
-    }, // This closing curly brace was moved down.
+    }, 
 }, {
     timestamps: true,
 });

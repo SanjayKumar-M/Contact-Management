@@ -1,6 +1,18 @@
 import expressAsyncHandler from "express-async-handler";
 import ContactSchema from "../model/contactmodel.js";
 
+const getContacts = expressAsyncHandler(async (req, res) => {
+  // const contacts = await ContactSchema.findById(req.params.id);
+  // if (!contacts) {
+  //   res.status(404);
+  //   throw new Error("Contact Not Found");
+  // }
+  // res.json({ messgage: `Fetched details from ${req.params.id}`, contacts });
+  const contacts = await ContactSchema.find({userId: req.findUser.id})
+  res.status(200).json(contacts)
+
+});
+
 const getContact = expressAsyncHandler(async (req, res) => {
   const contacts = await ContactSchema.findById(req.params.id);
   if (!contacts) {
@@ -8,6 +20,7 @@ const getContact = expressAsyncHandler(async (req, res) => {
     throw new Error("Contact Not Found");
   }
   res.json({ messgage: `Fetched details from ${req.params.id}`, contacts });
+
 
 });
 
@@ -20,7 +33,7 @@ const createContact = expressAsyncHandler(async (req, res) => {
   }
 
   const createNewContact = await ContactSchema.create({
-    name, email, ph
+    name, email, ph, userId:req.findUser.id
   })
 
   res.status(201).json(createNewContact);
@@ -31,6 +44,11 @@ const updateContact = expressAsyncHandler(async (req, res) => {
   const contact = await ContactSchema.findById(req.params.id);
   if (!contact) {
     res.status(400).json({ message: "Plz update anything !" });
+  }
+
+  if(contact.userId.toString()!== req.findUser.id){
+    res.status(403);
+    throw new Error("Permission Denied!")
   }
 
   const updateTheContact = await ContactSchema.findByIdAndUpdate(
@@ -52,6 +70,10 @@ const deleteContact = expressAsyncHandler(async (req, res) => {
     } else {
       res.json({ message: `Deleted contact with ID ${contactId}`, contactId });
     }
+    if(contactId.userId.toString()!== req.findUser.id){
+      res.status(403);
+      throw new Error("Permission Denied!")
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error deleting contact" });
@@ -59,6 +81,6 @@ const deleteContact = expressAsyncHandler(async (req, res) => {
 });
 
 
-export { getContact, createContact, updateContact, deleteContact };
+export { getContacts,getContact, createContact, updateContact, deleteContact };
 
 

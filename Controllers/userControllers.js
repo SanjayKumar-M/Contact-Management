@@ -45,24 +45,24 @@ const loginUser = expressAsyncHandler(async (req, res) => {
         const accesstoken = jwt.sign(
             {
                 findUser: {
-                    userName: findUser.username,
+                    userName: findUser.userName,
                     email: findUser.email,
                     id: findUser.id
                 }
             },
             "Thisistokensecret",
-            { expiresIn: "1m" }
+            { expiresIn: "10m" }
         );
         res.status(200).json({ accesstoken })
     }
-    else{
-        res.status(401).json({message:"Invalid Credentials"})
+    else {
+        res.status(401).json({ message: "Invalid Credentials" })
     }
-    res.json({message:"Login user!"})
+    res.json({ message: "Login user!" })
 });
 
 const currentUser = expressAsyncHandler((req, res) => {
-    res.json({ message: "Get details of the user" });
+    res.json(req.findUser);
 });
 
 export { registerUser, loginUser, currentUser };
