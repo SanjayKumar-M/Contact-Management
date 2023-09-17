@@ -6,6 +6,7 @@ const contactRoutes = Express.Router()
 contactRoutes.use(validationHandler)
 
 contactRoutes.route('/').post(createContact)
+
 contactRoutes.route('/').get(getContacts)
 
 contactRoutes.route('/:id').get(getContact)
