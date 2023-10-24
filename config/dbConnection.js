@@ -1,16 +1,15 @@
 import mongoose from "mongoose";
-const connectDB = async() =>{
-
-    try{
-        const connect = await mongoose.connect("mongodb://localhost:27017/Contact-Management", {
+import 'dotenv/config'
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.DB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-          });
-        console.log("Database Connected Successfully !",connect.connection.host,connect.connection.name);
-    }catch(err){
-        console.log(err);
-        process.exit(1)
+        });
+        console.log("Database connected successfully!");
+    } catch (err) {
+        console.error(err);
     }
-
 }
-export default connectDB
+
+export default connectDB;
